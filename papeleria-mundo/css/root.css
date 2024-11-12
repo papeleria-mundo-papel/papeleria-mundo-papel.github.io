@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: "Sour Gummy", sans-serif;
+    box-sizing: border-box;
+}
+
+html {
+    background: #f3f3f3;
+}
+
+.menu {
+    box-shadow: a7d971(108, 108, 216, 0.2) 0px 7px 29px 0px;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    font-family: 'Baloo 2', cursive;
+}
+
+.menu__logo {
+    height: 40px;
+}
+
+.menu__logo__img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.menu__item {
+    display: flex;
+    gap: 50px;
+}
+
+.menu__item__link {
+    font-size: 22px;
+    font-weight: 700;
+    color: #000;
+    text-decoration: none;
+}
+
+/* PORTADA */
+
+.portada-una {
+    width: 100%;
+    height: 80vh;
+    color: #fff;
+    background: linear-gradient(#76047867, #76047867), url(../img/banner.jpg); 
+    background-repeat: no-repeat; 
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.portada-dos {
+    width: 100%;
+    height: 80vh;
+    color: #fff;
+    background: linear-gradient(#76047867, #76047867), url(../img/banner.jpg); 
+    background-position: bottom;
+    background-repeat: no-repeat; 
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.portada__item {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+.portada__item__title {
+    font-size: 80px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* BOTON */
+
+.button {
+    background: #FF3BF1;
+    height: 40px;
+    min-width: 260px;
+    text-decoration: none;
+    color: #FFF;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 24px;
+    border-radius: 10px;
+}
+
+.pie-pagina {
+    background: #FF3BF1;
+    color: white;
+    text-align: center;
+    padding: 20px 0px;
+    font-weight: 800;
+    font-size: 28px;
+}
