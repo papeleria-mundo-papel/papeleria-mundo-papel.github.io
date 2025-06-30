@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Dibujo con Canvas</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #f0f0f0;
+    }
+    canvas {
+      border: 2px solid #000;
+      background: #fff;
+      cursor: crosshair;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="pizarra" width="600" height="400"></canvas>
+
+<script>
+  const canvas = document.getElementById('pizarra');
+  const ctx = canvas.getContext('2d');
+
+  let dibujando = false;
+
+  canvas.addEventListener('mousedown', (e) => {
+    dibujando = true;
+    ctx.beginPath();
+    ctx.moveTo(e.offsetX, e.offsetY);
+  });
+
+  canvas.addEventListener('mousemove', (e) => {
+    if (dibujando) {
+      ctx.lineTo(e.offsetX, e.offsetY);
+      ctx.stroke();
+    }
+  });
+
+  canvas.addEventListener('mouseup', () => {
+    dibujando = false;
+  });
+
+  canvas.addEventListener('mouseleave', () => {
+    dibujando = false;
+  });
+</script>
+
+</body>
+</html>
