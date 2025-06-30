@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Dibujo con Canvas</title>
+  <title>Firma en Canvas</title>
   <style>
     body {
       display: flex;
@@ -15,29 +15,46 @@
     canvas {
       border: 2px solid #000;
       background: #fff;
-      cursor: crosshair;
+      touch-action: none; /* Importante para evitar scroll en móviles */
     }
   </style>
 </head>
 <body>
 
-<canvas id="pizarra" width="600" height="400"></canvas>
+<canvas id="firma" width="600" height="400"></canvas>
 
 <script>
-  const canvas = document.getElementById('pizarra');
+  const canvas = document.getElementById('firma');
   const ctx = canvas.getContext('2d');
-
   let dibujando = false;
 
+  // Función para obtener la posición relativa
+  function getPos(e) {
+    if (e.touches) {
+      return {
+        x: e.touches[0].clientX - canvas.getBoundingClientRect().left,
+        y: e.touches[0].clientY - canvas.getBoundingClientRect().top
+      };
+    } else {
+      return {
+        x: e.offsetX,
+        y: e.offsetY
+      };
+    }
+  }
+
+  // Mouse
   canvas.addEventListener('mousedown', (e) => {
     dibujando = true;
+    const pos = getPos(e);
     ctx.beginPath();
-    ctx.moveTo(e.offsetX, e.offsetY);
+    ctx.moveTo(pos.x, pos.y);
   });
 
   canvas.addEventListener('mousemove', (e) => {
     if (dibujando) {
-      ctx.lineTo(e.offsetX, e.offsetY);
+      const pos = getPos(e);
+      ctx.lineTo(pos.x, pos.y);
       ctx.stroke();
     }
   });
@@ -49,6 +66,29 @@
   canvas.addEventListener('mouseleave', () => {
     dibujando = false;
   });
+
+  // Touch
+  canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    dibujando = true;
+    const pos = getPos(e);
+    ctx.beginPath();
+    ctx.moveTo(pos.x, pos.y);
+  });
+
+  canvas.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    if (dibujando) {
+      const pos = getPos(e);
+      ctx.lineTo(pos.x, pos.y);
+      ctx.stroke();
+    }
+  });
+
+  canvas.addEventListener('touchend', () => {
+    dibujando = false;
+  });
+
 </script>
 
 </body>
